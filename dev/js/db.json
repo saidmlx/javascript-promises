@@ -1,0 +1,47 @@
+{
+	
+	"stores":[
+		{
+			"reference":"001",
+			"name":"Center",
+			"addrea":"PO BOX 110"
+		},
+		{
+			"reference":"002",
+			"name":"West",
+			"addrea":"PO BOX 480"
+		},
+		{
+			"reference":"003",
+			"name":"Border way",
+			"addrea":"PO BOX 025"
+		},
+		{
+			"reference":"004",
+			"name":"Terra media",
+			"addrea":"PO BOX 073"
+		}
+	],
+	
+	"products":[
+		{
+			"referenceStore":"001",
+			"id":"VG-01",
+			"name":"Red Apple",
+			"stock":5
+		},
+		{
+			"referenceStore":"002",
+			"id":"VG-02",
+			"name":"Pineaple",
+			"stock":10
+		},
+		{
+			"referenceStore":"002",
+			"id":"VG-02",
+			"name":"Pineaple",
+			"stock":100
+		}
+	]
+	
+}
