@@ -1,7 +1,7 @@
 
 var Services = function(){
 	console.info('Services::Constructor()');
-	this.root='http://jsonplaceholder.typicode.com';
+	this.root='http://localhost:3000';
 	this.data=undefined;
 
 }
@@ -30,8 +30,9 @@ Services.prototype.loadAlbums = function(users) {
 	          		return self.ajaxCall(self.root + '/albums', {userId: user.id});
 	      		}
 	      	)
-	      	//.then(self.loadPhotos())	
+	      	.then(self.loadPhotos())	
 	  		.then(self.accumulate(user,'albums'))
+
 	  		.then(function() {
 	            return users;
 	        });
@@ -48,7 +49,10 @@ Services.prototype.loadPhotos = function(albums) {
 	  			function() {
 	          		return self.ajaxCall(self.root + '/photos', {albumId: album.id});
 	      		},self)
-			.then(self.accumulate(album,'photos'));
+			.then(self.accumulate(album,'photos'))
+			.then(function() {
+	            return albums;
+	        });
 		},$.when());
 	}
 }

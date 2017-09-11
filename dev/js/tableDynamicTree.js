@@ -1,22 +1,24 @@
 
-var Table = function(selectorById){
-	console.info('Table::Constructor()');
+var TableDynamicTree = function(selectorById){
+	console.info('TableDynamicTree::Constructor()');
 	this.element = document.getElementById(selectorById.replace('#',''));
 	this.data= undefined;
 }
 
-Table.prototype.setData = function(data){
+TableDynamicTree.prototype.setData = function(data){
 	this.data = data;
 }
 
-Table.prototype.build = function(){
+TableDynamicTree.prototype.build = function(){
+	console.info('TableDynamicTree::build()');
 	if(this.data!=undefined){
-		this.element.innerHTML=this.buildRow(this.data,'-',0);;
+		$(this.element).children().remove();
+		this.element.innerHTML=this.buildRow(this.data,'-',0);
 	}
 }
 
-Table.prototype.buildRow = function(value,deep,name){
-	console.info('buildRow '+deep+'> ('+name+') ', value);
+TableDynamicTree.prototype.buildRow = function(value,deep,name){
+	//console.info('buildRow '+deep+'> ('+name+') ', value);
 	deep=deep+'-';
 	var result ="";
 	if( $.isArray(value) ) {
@@ -55,5 +57,8 @@ Table.prototype.buildRow = function(value,deep,name){
 	}	
 }
 
+TableDynamicTree.prototype.clean = function(){
+	$(this.element).children().remove();
+}
 
-module.exports = Table; 
+module.exports = TableDynamicTree; 

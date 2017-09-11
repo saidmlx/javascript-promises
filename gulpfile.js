@@ -41,7 +41,7 @@ gulp.task('sass', function() {
 
 
 gulp.task('js',function(){
-  gulp.src('./dev/js/app.js')
+  gulp.src('./dev/js/app**.js')
   .pipe(browserify())
   .pipe(gulp.dest('./public/js'))
   .pipe(connect.reload());
