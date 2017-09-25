@@ -26,6 +26,7 @@ gulp
 ```
 ## The main ideas from promises
 
+### The promises
 The next javascript function is the way how you can implement a http request through promises, this code you cand find anywhere.
 
 If you want to know more about promises you can find many examples search in google
@@ -50,7 +51,7 @@ var ajaxCall = function(url,data){
 	return deferred.promise();
 }
 ```
-
+### Nested promises
 The next javascript function is the way how you can implement a http request through promises, this code you cand find anywhere.
 
 It's a basic example nested request but not chained
@@ -63,6 +64,7 @@ ajaxCall('http://localhost:3000/','{}')
 .then(ajaxCall('http://localhost:3000/','{}'),error())
 ```
 
+### Nested chained promises
 If you want nested request chained then you need the Reduce method
 
 ```javascript
@@ -85,8 +87,8 @@ array.reduce(function(previousItem, Item) {
 	  	},$.when());
 ```
 
-### Conclusions
-i have created two completed examples tha you can explore 
+## Conclusions
+I have created two completed examples tha you can explore 
 
 
 
