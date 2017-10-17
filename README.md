@@ -1,10 +1,10 @@
 # Promesas en JavaScript
-En algunas ocaciones necesitamos llamar peticiones HTTP, y sabemos que para que la expertiencia de uaurio no sea desfaforable estas peticiones deben ser asincronas, pero que pasa si estas peticiones dependen una de otra, lo que significaria anidar estas peticiones; para este caso necesitamos promesas.
+En algunas ocasiones necesitamos llamar peticiones HTTP, y sabemos que para que la experiencia de usuario no sea desfavorable estas peticiones deben ser asíncronas, pero que pasa si estas peticiones dependen una de otra, lo que significaría anidar estas peticiones; para este caso necesitamos promesas.
 
-Una promesa no es mas que una respuesta que puede o no estar disponible; esto significa que si lanzamos una peticion la respuesta puede ser devuelta al instante o tardar 1,2,3,... minutos o no responder nunca; pero la interaccion con la aplicacion no se puede detener.
+Una promesa no es más que una respuesta que puede o no estar disponible; esto significa que si lanzamos una petición la respuesta puede ser devuelta al instante o tardar 1,2,3,... minutos o no responder nunca.
 
 ## La idea principal de una promesa 
-El metodo siguiente no es mas que una peticion **_Ajax_** con **_Jquery_** que utiliza el objeto **_Defered_** que nos ayuda a registrar diferentes callbacks, este ojeto lo que hace es regresar el objeto cuando se tiene una respuesta ya sea satisfactoria **(resolve)** o cuando falla **(reject)**.
+El método siguiente no es más que una petición **_Ajax_** con **_Jquery_** que utiliza el objeto _**Defered_** que nos ayuda a registrar diferentes callbacks, este objeto lo que hace es regresar el objeto cuando se tiene una respuesta ya sea satisfactoria (**_resolve_**) o cuando falla (**_reject_**).
 
 ```javascript
 var ajaxCall = function(url,data){
@@ -46,14 +46,20 @@ getBooks()
 ```
 
 ### Peticiones anidadas
-Cuando necesitamos anidar peticiones podemos utilizar el metodo definido antes y utulizar el objeto **then** que nos ayuda a llamar la siguiente peticion hasta que la peticion actual termina.
+Cuando necesitamos anidar peticiones podemos utilizar el método antes definido y utilizar el objeto **then**.
 
-Para este ejemplo se manda a llamar el servicio REST **http://localhost:3000/getOne** y hasta que el servicio responda y sea satisfactoria se manda a llamar el servicio **http://localhost:3000/getTwo** y una vez este termine se mandara a llamr el tercer servicio  **http://localhost:3000/getLast**  
+En este ejemplo tenemos la siguinte secuencia.
+1. Con el metodo **_getBooks()_** se realiza la peticion al servicio **_http://localhost:4001/books_** que nos regresara un listado de libros. 
+2. Con el metodo **_getMusic()_** construimos HTML de los libros.
+3. Con el metodo **_getMusic()_** se realiza la peticion al servicio **_http://localhost:4001/music_** que nos regresara un listado de los albunes de musica. 
+4. Con el metodo **_printMusic()_** construimos HTML de los albunes de musica que nos regreso el servicio.
 
+El codigo para hacer lo anterior es el siguinete.
 ```javascript
-ajaxCall('http://localhost:3000/getOne','{}')
-.then(ajaxCall('http://localhost:3000/getTwo','{}'),error())
-.then(ajaxCall('http://localhost:3000/getLast','{}'),error())
+this.getBooks()
+.then(this.printBooks.bind(this))
+.then(this.getMusic.bind(this))
+.then(this.printMusic.bind(this));
 ```
 
 ## Peticiones encadenadas
