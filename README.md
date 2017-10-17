@@ -28,9 +28,9 @@ var ajaxCall = function(url,data){
 }
 ```
 
-### Peticion básica
+### Petición básica
 
-Un ejemplo de peticion basica seria la siguiente, el metodo **_getBooks()_** llama al servicio **http://localhost:4001/books** una vez responda el servicio se jecuta el metodo **_printBooks()_**
+Un ejemplo de petición básica seria la siguiente, el método **_getBooks()_** llama al servicio **http://localhost:4001/books** una vez responda el servicio se jecuta el metodo **_printBooks()_**.
 
 
 ``` Javascript
@@ -49,10 +49,10 @@ getBooks()
 Cuando necesitamos anidar peticiones podemos utilizar el método antes definido y utilizar el objeto **then**.
 
 En este ejemplo tenemos la siguiente secuencia.
-1. Con el método **_getBooks()_** se realiza la peticion al servicio **_http://localhost:4001/books_** que nos regresara un listado de libros. 
+1. Con el método **_getBooks()_** se realiza la petición al servicio **_http://localhost:4001/books_** que nos regresara un listado de libros. 
 2. Con el método **_getMusic()_** construimos HTML de los libros.
 3. Con el método **_getMusic()_** se realiza la petición al servicio **_http://localhost:4001/music_** que nos regresara un listado de los álbumes de música. 
-4. Con el metodo **_printMusic()_** construimos HTML de los álbumes de música que nos regreso el servicio.
+4. Con el método **_printMusic()_** construimos HTML de los álbumes de música que nos regresó el servicio.
 
 El código para hacer lo anterior es el siguiente.
 ```javascript
