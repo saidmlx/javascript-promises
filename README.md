@@ -48,13 +48,13 @@ getBooks()
 ### Peticiones anidadas
 Cuando necesitamos anidar peticiones podemos utilizar el método antes definido y utilizar el objeto **then**.
 
-En este ejemplo tenemos la siguinte secuencia.
-1. Con el metodo **_getBooks()_** se realiza la peticion al servicio **_http://localhost:4001/books_** que nos regresara un listado de libros. 
-2. Con el metodo **_getMusic()_** construimos HTML de los libros.
-3. Con el metodo **_getMusic()_** se realiza la peticion al servicio **_http://localhost:4001/music_** que nos regresara un listado de los albunes de musica. 
-4. Con el metodo **_printMusic()_** construimos HTML de los albunes de musica que nos regreso el servicio.
+En este ejemplo tenemos la siguiente secuencia.
+1. Con el método **_getBooks()_** se realiza la peticion al servicio **_http://localhost:4001/books_** que nos regresara un listado de libros. 
+2. Con el método **_getMusic()_** construimos HTML de los libros.
+3. Con el método **_getMusic()_** se realiza la petición al servicio **_http://localhost:4001/music_** que nos regresara un listado de los álbumes de música. 
+4. Con el metodo **_printMusic()_** construimos HTML de los álbumes de música que nos regreso el servicio.
 
-El codigo para hacer lo anterior es el siguinete.
+El código para hacer lo anterior es el siguiente.
 ```javascript
 this.getBooks()
 .then(this.printBooks.bind(this))
