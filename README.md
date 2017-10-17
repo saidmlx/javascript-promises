@@ -4,34 +4,45 @@ En algunas ocaciones necesitamos llamar peticiones HTTP, y sabemos que para que 
 Una promesa no es mas que una respuesta que puede o no estar disponible; esto significa que si lanzamos una peticion la respuesta puede ser devuelta al instante o tardar 1,2,3,... minutos o no responder nunca; pero la interaccion con la aplicacion no se puede detener.
 
 ## La idea principal de una promesa 
-El metodo siguiente no es mas que una peticion Ajax con Jquery que utiliza el objeto Defered que nos ayuda a registrar diferentes callbacks, este ojeto lo que hace es regresar el objeto cuando se tiene una respuesta ya sea satisfactoria **(resolve)** o cuando falla **(reject)**.
+El metodo siguiente no es mas que una peticion **_Ajax_** con **_Jquery_** que utiliza el objeto **_Defered_** que nos ayuda a registrar diferentes callbacks, este ojeto lo que hace es regresar el objeto cuando se tiene una respuesta ya sea satisfactoria **(resolve)** o cuando falla **(reject)**.
 
 ```javascript
 var ajaxCall = function(url,data){
-	var deferred = $.Deferred();
-	$.ajax ({
-	   	type: "GET",
-	   	url: url,
-	   	dataType: 'json', 
-	   	data:data,
-	   	success: function (data){deferred.resolve(data );},
-	   	fail: function (data,status){ 
-	   		console.info('fail: ',data,status);
-	   		deferred.reject(data); 
-	   	},
-	   	error: function (data,status){ 
-	   		console.info('error: ',data,status)
-	   		deferred.reject(data); 
-	   	}
-	});
-	return deferred.promise();
+  var deferred = $.Deferred();
+  $.ajax ({
+    type: "GET",
+    url: url,
+    dataType: 'json', 
+    data:data,
+    success: function (data){
+      deferred.resolve(data );
+    },
+    fail: function (data,status){  
+      deferred.reject(data); 
+    },
+    error: function (data,status){ 
+      deferred.reject(data); 
+    }
+  });
+  return deferred.promise();
 }
 ```
+
 ### Peticion básica
 
-Una peticion basica es la siguiente propuesta, se solicita el servicio **http://localhost:4001/books** una vez responda el servicio se jecuta el metodo **_printList()_**
+Un ejemplo de peticion basica seria la siguiente, el metodo **_getBooks()_** llama al servicio **http://localhost:4001/books** una vez responda el servicio se jecuta el metodo **_printBooks()_**
+
+
 ``` Javascript
-this.ajaxCall('http://localhost:4001/books',{}).then(this.printList.bind(this));
+getBooks = function(){
+  return this.ajaxCall('http://localhost:4001/books',{});
+}
+printBooks = function(books){
+  return books.forEach(this.printBook);		 
+}
+
+getBooks()
+.then(this.printBooks.bind(this));
 ```
 
 ### Peticiones anidadas
